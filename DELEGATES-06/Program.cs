@@ -9,20 +9,25 @@ namespace DELEGATES_06
             var emps = new Employee[]
             {
                 new Employee{Id=1,Gender="M", Name="Younis Y.",TotalSales=65000m},
-                new Employee{Id=2,Gender="F", Name="Reem R.",TotalSales=50000m},
+                new Employee{Id=2,Gender="F", Name="Reem   R.",TotalSales=50000m},
                 new Employee{Id=3,Gender="M", Name="Sultan S.",TotalSales=65000m},
-                new Employee{Id=4,Gender="F", Name="Nora N.",TotalSales=40000m},
+                new Employee{Id=4,Gender="F", Name="Nora   N.",TotalSales=40000m},
                 new Employee{Id=5,Gender="M", Name="Waleed W.",TotalSales=42000},
-                new Employee{Id=6,Gender="F", Name="Amira A",TotalSales=30000m},
-                new Employee{Id=7,Gender="M", Name="Feras F.",TotalSales=16000m},
+                new Employee{Id=6,Gender="F", Name="Amira  A.",TotalSales=30000m},
+                new Employee{Id=7,Gender="M", Name="Feras  F.",TotalSales=16000m},
                 new Employee{Id=8,Gender="F", Name="Tasnim T.",TotalSales=15000m},
             };
 
             var report = new Report();
-            report.ProcessEmployeeWith60000PlusSales(emps);
-            report.ProcessEmployeeWithSalesBetween30000and59999(emps);
-            report.ProcessEmployeeWithSalesBetweenLessThan30000(emps);
+            report.ProcessEmployee(emps, "Emplpyees With Sales >= $60,000m",IsGreatherThanOrEqual60000);
+            report.ProcessEmployee(emps, "Emplpyees With Sales Between $30,000 And < $60,000m", IsBetween30000And59999);
+            report.ProcessEmployee(emps, "Emplpyees With Sales Less Than < $30,000m", IsLessThan30000);
+
             Console.ReadKey();
         }
+
+        static bool IsGreatherThanOrEqual60000(Employee e) => e.TotalSales > 60000m;
+        static bool IsBetween30000And59999(Employee e) => e.TotalSales >= 30000m && e.TotalSales < 60000m;
+        static bool IsLessThan30000(Employee e) => e.TotalSales > 30000m;
     }
 }
