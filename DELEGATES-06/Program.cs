@@ -19,13 +19,13 @@ namespace DELEGATES_06
             };
 
             var report = new Report();
-            report.ProcessEmployee(emps, "Emplpyees With Sales >= $60,000m",delegate(Employee e) { return e.TotalSales > 60000m; });    //Ananymous Delegate
-            report.ProcessEmployee(emps, "Emplpyees With Sales Between $30,000 And < $60,000m", delegate (Employee e) { return e.TotalSales >=3000 && e.TotalSales< 60000m; });    //Ananymous Delegate
-            report.ProcessEmployee(emps, "Emplpyees With Sales Less Than < $30,000m", delegate (Employee e) { return e.TotalSales > 30000m; });    //Ananymous Delegate
-
+            report.ProcessEmployee(emps, "Emplpyees With Sales >= $60,000m", e => e.TotalSales > 60000m);  // (=>) LAMBDA EXPRESSION  After .net3.0  
+            report.ProcessEmployee(emps, "Emplpyees With Sales Between $30,000 And < $60,000m", e => e.TotalSales >= 3000 && e.TotalSales < 60000m);   // (=>) LAMBDA EXPRESSION  After .net3.0  
+            report.ProcessEmployee(emps, "Emplpyees With Sales Less Than < $30,000m", e => e.TotalSales > 30000m);    // (=>) LAMBDA EXPRESSION  After .net3.0
+            // (=>) LAMBDA EXPRESSION  After .net3.0
             Console.ReadKey();
         }
 
-   
+
     }
 }
