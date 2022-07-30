@@ -2,30 +2,39 @@
 
 namespace DELEGATES_06
 {
+    //Multi Cast Delegate
+    public delegate void RectanDelegate(decimal width, decimal height);
     class Program
     {
         static void Main(string[] args)
         {
-            var emps = new Employee[]
-            {
-                new Employee{Id=1,Gender="M", Name="Younis Y.",TotalSales=65000m},
-                new Employee{Id=2,Gender="F", Name="Reem   R.",TotalSales=50000m},
-                new Employee{Id=3,Gender="M", Name="Sultan S.",TotalSales=65000m},
-                new Employee{Id=4,Gender="F", Name="Nora   N.",TotalSales=40000m},
-                new Employee{Id=5,Gender="M", Name="Waleed W.",TotalSales=42000},
-                new Employee{Id=6,Gender="F", Name="Amira  A.",TotalSales=30000m},
-                new Employee{Id=7,Gender="M", Name="Feras  F.",TotalSales=16000m},
-                new Employee{Id=8,Gender="F", Name="Tasnim T.",TotalSales=15000m},
-            };
+            var helper = new Rectangelhelper();
+            RectanDelegate rect;
+            rect = helper.GetArea;
+            rect += helper.GetPerimeter;
 
-            var report = new Report();
-            report.ProcessEmployee(emps, "Emplpyees With Sales >= $60,000m", e => e.TotalSales > 60000m);  // (=>) LAMBDA EXPRESSION  After .net3.0  
-            report.ProcessEmployee(emps, "Emplpyees With Sales Between $30,000 And < $60,000m", e => e.TotalSales >= 3000 && e.TotalSales < 60000m);   // (=>) LAMBDA EXPRESSION  After .net3.0  
-            report.ProcessEmployee(emps, "Emplpyees With Sales Less Than < $30,000m", e => e.TotalSales > 30000m);    // (=>) LAMBDA EXPRESSION  After .net3.0
-            // (=>) LAMBDA EXPRESSION  After .net3.0
+            rect(10, 10);
+            rect -= helper.GetArea;
+
+            Console.WriteLine("After UnSubscribibing rect.GetArea\n");
+            rect(10, 10);
+
             Console.ReadKey();
         }
+    }
 
+    public class Rectangelhelper
+    {
+        public void GetArea(decimal width, decimal height)
+        {
+            var result = width * height;
+            Console.WriteLine($"Area: {width * height} = {result}");
+        }
 
+        public void GetPerimeter(decimal width, decimal height)
+        {
+            var result = 2 * (width + height);
+            Console.WriteLine($"Perimeter: 2 × ({ width } + { height}) = {result}");
+        }
     }
 }
