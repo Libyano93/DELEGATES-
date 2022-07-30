@@ -19,15 +19,13 @@ namespace DELEGATES_06
             };
 
             var report = new Report();
-            report.ProcessEmployee(emps, "Emplpyees With Sales >= $60,000m",IsGreatherThanOrEqual60000);
-            report.ProcessEmployee(emps, "Emplpyees With Sales Between $30,000 And < $60,000m", IsBetween30000And59999);
-            report.ProcessEmployee(emps, "Emplpyees With Sales Less Than < $30,000m", IsLessThan30000);
+            report.ProcessEmployee(emps, "Emplpyees With Sales >= $60,000m",delegate(Employee e) { return e.TotalSales > 60000m; });    //Ananymous Delegate
+            report.ProcessEmployee(emps, "Emplpyees With Sales Between $30,000 And < $60,000m", delegate (Employee e) { return e.TotalSales >=3000 && e.TotalSales< 60000m; });    //Ananymous Delegate
+            report.ProcessEmployee(emps, "Emplpyees With Sales Less Than < $30,000m", delegate (Employee e) { return e.TotalSales > 30000m; });    //Ananymous Delegate
 
             Console.ReadKey();
         }
 
-        static bool IsGreatherThanOrEqual60000(Employee e) => e.TotalSales > 60000m;
-        static bool IsBetween30000And59999(Employee e) => e.TotalSales >= 30000m && e.TotalSales < 60000m;
-        static bool IsLessThan30000(Employee e) => e.TotalSales > 30000m;
+   
     }
 }

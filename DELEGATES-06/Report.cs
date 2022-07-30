@@ -12,7 +12,7 @@ namespace DELEGATES_06
             Console.WriteLine("  Id   |Gender |   Name        | TotalSales");
             Console.WriteLine("-------------------------------------------");
 
-
+           
             foreach (var e in employees)
             {
                 if (Isillegibal(e))
